@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44063230213",
+    "project_id": "calci-devsoc",
+    "storage_bucket": "calci-devsoc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44063230213:android:5b5a7b5c5036f345e50f6c",
+        "android_client_info": {
+          "package_name": "com.example.calculator_devsoc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwcziqXPApQ1nDxulZXr9__YKjYoOfmbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
