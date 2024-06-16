@@ -19,7 +19,9 @@ class _ShowDataState extends State<ShowData> {
         title: Text(
           'History',
           style: TextStyle(
-              fontSize: 32, color: Color.fromARGB(255, 180, 175, 175)),
+              fontFamily: 'Lcd',
+              fontSize: 32,
+              color: Color.fromARGB(255, 180, 175, 175)),
         ),
         centerTitle: true,
         bottom: PreferredSize(
@@ -31,6 +33,8 @@ class _ShowDataState extends State<ShowData> {
             preferredSize: Size.fromHeight(4.0)),
       ),
       body: Container(
+        height: 1000,
+        width: 1000,
         padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
         color: Colors.black,
         child: StreamBuilder<QuerySnapshot>(
@@ -55,13 +59,17 @@ class _ShowDataState extends State<ShowData> {
                         Text(
                           calculations['Calculations'],
                           style: TextStyle(
+                            fontFamily: 'Trito Writter',
                             color: Colors.grey[400],
                             fontSize: 20,
                           ),
                         ),
                         Text(
                           '=' + ' ' + calculations['Result'],
-                          style: TextStyle(color: Colors.amber, fontSize: 25),
+                          style: TextStyle(
+                              fontFamily: 'Trito Writter',
+                              color: Colors.amber,
+                              fontSize: 25),
                         ),
                         // Divider(
                         //   height: 10,
