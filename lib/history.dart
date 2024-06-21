@@ -20,7 +20,7 @@ class _ShowDataState extends State<ShowData> {
           'History',
           style: TextStyle(
               fontFamily: 'Lcd',
-              fontSize: 32,
+              fontSize: 40,
               color: Color.fromARGB(255, 180, 175, 175)),
         ),
         centerTitle: true,
@@ -28,65 +28,67 @@ class _ShowDataState extends State<ShowData> {
             child: Container(
               color: Colors.amber,
               height: 1.0,
-              width: 310,
+              width: 350,
             ),
             preferredSize: Size.fromHeight(4.0)),
       ),
-      body: Container(
-        height: 1000,
-        width: 1000,
-        padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-        color: Colors.black,
-        child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection("calculations")
-                .doc("uid")
-                .collection("history")
-                .orderBy("createdAt", descending: false)
-                .limit(10)
-                .snapshots(),
-            builder: (context, snapshot) {
-              List<Container> calcWidgets = [];
-              if (snapshot.hasData) {
-                final calcs = snapshot.data?.docs.reversed.toList();
-                for (var calculations in calcs!) {
-                  final calcWidget = Container(
-                    height: 80,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          calculations['Calculations'],
-                          style: TextStyle(
-                            fontFamily: 'Trito Writter',
-                            color: Colors.grey[400],
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
-                          '=' + ' ' + calculations['Result'],
-                          style: TextStyle(
+      body: SafeArea(
+        child: Container(
+          height: 1000,
+          width: 1000,
+          padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
+          color: Colors.black,
+          child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("calculations")
+                  .doc("uid")
+                  .collection("history")
+                  .orderBy("createdAt", descending: false)
+                  .limit(10)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                List<Container> calcWidgets = [];
+                if (snapshot.hasData) {
+                  final calcs = snapshot.data?.docs.reversed.toList();
+                  for (var calculations in calcs!) {
+                    final calcWidget = Container(
+                      height: 80,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            calculations['Calculations'],
+                            style: TextStyle(
                               fontFamily: 'Trito Writter',
-                              color: Colors.amber,
-                              fontSize: 25),
-                        ),
-                        // Divider(
-                        //   height: 10,
-                        // )
-                      ],
-                    ),
-                  );
-                  calcWidgets.add(calcWidget);
+                              color: Colors.grey[400],
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            '=' + ' ' + calculations['Result'],
+                            style: TextStyle(
+                                fontFamily: 'Trito Writter',
+                                color: Colors.amber,
+                                fontSize: 25),
+                          ),
+                          // Divider(
+                          //   height: 10,
+                          // )
+                        ],
+                      ),
+                    );
+                    calcWidgets.add(calcWidget);
+                  }
                 }
-              }
 
-              return Expanded(
-                child: ListView(
-                  children: calcWidgets,
-                ),
-              );
-            }),
+                return Expanded(
+                  child: ListView(
+                    children: calcWidgets,
+                  ),
+                );
+              }),
+        ),
       ),
     );
   }
