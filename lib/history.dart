@@ -82,10 +82,8 @@ class _ShowDataState extends State<ShowData> {
                   }
                 }
 
-                return Expanded(
-                  child: ListView(
-                    children: calcWidgets,
-                  ),
+                return ListView(
+                  children: calcWidgets,
                 );
               }),
         ),

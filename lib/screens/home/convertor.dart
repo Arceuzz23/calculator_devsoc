@@ -1,6 +1,7 @@
 import 'package:calculator_devsoc/api/api_client.dart';
 import 'package:calculator_devsoc/api/drop_down.dart';
 import 'package:flutter/material.dart';
+import 'package:calculator_devsoc/shareds/const.dart';
 
 class currency_convertor extends StatefulWidget {
   const currency_convertor({super.key});
@@ -37,62 +38,78 @@ class _currency_convertorState extends State<currency_convertor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.black,
-        title: Text(
-          'Currency Convertor',
-          style: TextStyle(
-              fontFamily: 'Lcd',
-              fontSize: 25,
-              color: Color.fromARGB(255, 180, 175, 175)),
-        ),
-        centerTitle: true,
-        bottom: PreferredSize(
-            child: Container(
-              color: Colors.amber,
-              height: 1.0,
-              width: 350,
-            ),
-            preferredSize: Size.fromHeight(4.0)),
-      ),
-      // body: DropDown(currencies, from, (from) {}),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
-          color: Colors.black,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/images/money.jpg"),
+            fit: BoxFit.cover,
+            opacity: 0.5,
+          )),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 350,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          labelText: "Input Value",
-                          labelStyle: TextStyle(color: Colors.black),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        onSubmitted: (value) async {
-                          rate = await client.convertCurrency(from, to);
-                          setState(
-                            () {
-                              result = (rate * double.parse(value))
-                                  .toStringAsFixed(3);
-                            },
-                          );
-                        },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 150,
+              ),
+              Text(
+                "Currency",
+                style: TextStyle(
+                    fontSize: 40,
+                    fontFamily: 'Computo Monospace',
+                    color: const Color.fromARGB(255, 0, 0, 0)),
+              ),
+              Text(
+                "Convertor",
+                style: TextStyle(fontSize: 40, fontFamily: 'Computo Monospace'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: 325,
+                child: TextField(
+                  decoration: textInputDecoration.copyWith(
+                      hintText: 'Input Value',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Trito Writter',
                       ),
-                    ),
-                  ],
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.amber, width: 1.0)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.amber, width: 2.0),
+                      )),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Trito Writter',
+                    fontSize: 20,
+                  ),
+                  keyboardType: TextInputType.number,
+                  onSubmitted: (value) async {
+                    rate = await client.convertCurrency(from, to);
+                    setState(
+                      () {
+                        result =
+                            (rate * double.parse(value)).toStringAsFixed(3);
+                      },
+                    );
+                  },
                 ),
               ),
               SizedBox(
@@ -119,9 +136,13 @@ class _currency_convertorState extends State<currency_convertor> {
                         },
                       );
                     },
-                    child: Icon(Icons.swap_horiz),
+                    child: Icon(
+                      Icons.swap_horiz,
+                      size: 40,
+                      color: Colors.black,
+                    ),
                     elevation: 0,
-                    backgroundColor: Colors.amber,
+                    backgroundColor: Color.fromARGB(0, 255, 255, 255),
                   ),
                   SizedBox(
                     width: 20,
@@ -137,12 +158,31 @@ class _currency_convertorState extends State<currency_convertor> {
                 height: 20,
               ),
               Container(
-                  width: 250,
+                  width: 325,
+                  height: 69,
                   decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: Color.fromARGB(255, 255, 254, 254),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.amber),
+                  ),
                   child: Column(
-                    children: [Text("Result"), Text(result)],
+                    children: [
+                      Text(
+                        "Result: ",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontFamily: 'Trito Writter',
+                        ),
+                      ),
+                      Text(
+                        result,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.black,
+                          fontFamily: 'Trito Writter',
+                        ),
+                      )
+                    ],
                   ))
             ],
           ),

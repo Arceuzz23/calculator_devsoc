@@ -1,8 +1,11 @@
+import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:calculator_devsoc/history.dart';
+import 'package:calculator_devsoc/screens/home/convertor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:calculator_devsoc/services/auth.dart';
+import 'package:flutter/widgets.dart';
 
 class Landscape extends StatefulWidget {
   const Landscape({super.key});
@@ -554,10 +557,7 @@ class _LandscapeState extends State<Landscape> {
                                     backgroundColor: Colors.yellow[50],
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return Scaffold(
-                                          body: Container(
-                                        color: Colors.red,
-                                      ));
+                                      return currency_convertor();
                                     });
                               },
                               child: Icon(

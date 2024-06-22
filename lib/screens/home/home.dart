@@ -14,30 +14,11 @@ class Home_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return StreamProvider<QuerySnapshot?>.value(
-    //   initialData: null,
-    //   value: DatabaseService(uid: '').calc,
-    //   child: Scaffold(
-    //     backgroundColor: Colors.brown[50],
-    //     appBar: AppBar(
-    //       title: Text('Calculator',
-    //           style: TextStyle(
-    //             color: Colors.white,
-    //           )),
-    //       backgroundColor: Colors.brown[400],
-    //       elevation: 0.0,
-    //     ),
-    //     body: BrewList(),
-    //   ),
-    // );
-
     return SafeArea(
       child: OrientationWidget(
         potrait: Potrait(),
         landscape: Landscape(),
       ),
     );
-
-    // return ShowData();
   }
 }

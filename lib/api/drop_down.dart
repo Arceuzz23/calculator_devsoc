@@ -6,19 +6,15 @@ Widget DropDown(List<String> items, String value, onChange(val)) {
   return Container(
     padding: const EdgeInsets.all(10),
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: Colors.white70,
       borderRadius: BorderRadius.circular(10),
     ),
     child: DropdownButton<String>(
       value: effectiveValue,
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
+      elevation: 0,
+      style: const TextStyle(color: Colors.black),
       onChanged: (String? val) {
         onChange(val);
       },
